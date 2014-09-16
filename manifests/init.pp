@@ -1,12 +1,12 @@
 class prosody(
 ){
 
-    class {
-        'prosody::package':;
+  class {
+    'prosody::package':;
 
-        'prosody::service':;
+    'prosody::service':;
 
-        'prosody::config':;
-    }
+    'prosody::config':;
+  }
 
 }
