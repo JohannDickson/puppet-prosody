@@ -33,4 +33,17 @@ define prosody::virtualhost(
       ;
   }
 
+  if $groups_file {
+    file {
+      $groups_file:
+        ensure  => 'file',
+        owner   => 'root',
+        group   => 'prosody',
+        mode    => '0644',
+        require => Class['prosody::config'],
+        notify  => Service['prosody'],
+        ;
+    }
+  }
+
 }
