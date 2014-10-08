@@ -9,6 +9,7 @@ define prosody::virtualhost(
   $s2s_require_encryption = $::prosody::s2s_require_encryption,
   $ssl_key                = '',
   $ssl_cert               = '',
+  $groups_file            = '',
 ){
 
   file {

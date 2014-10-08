@@ -43,7 +43,7 @@ modules_enabled = {
 default_storage = "<%= @storage %>"
 
 <% if @modules_enabled.include? "groups" %>
-groups_file = "/etc/prosody/<%= @name %>_groups.txt"
+groups_file = "<%= @groups_file %>"
 <% end -%>
 
 <% if @modules_enabled.include? "watchregistrations" %>
