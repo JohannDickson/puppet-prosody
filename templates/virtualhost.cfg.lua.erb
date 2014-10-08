@@ -58,3 +58,18 @@ registration_watchers = {
 }
 registration_notification = "User $username has registered on $host from $ip"
 <% end -%>
+
+------ Components ------
+-- You can specify components to add hosts that provide special services,
+-- like multi-user conferences, and transports.
+-- For more information on components, see http://prosody.im/doc/components
+
+-- Set up a MUC (multi-user chat) room server on conference.<%= @name %>:
+--Component "conference.<%= @name %>" "muc"
+
+-- Set up a SOCKS5 bytestream proxy for server-proxied file transfers:
+--Component "proxy.<%= @name %>" "proxy65"
+
+---Set up an external component (default component port is 5347)
+--Component "gateway.<%= @name %>"
+--	component_secret = "password"
