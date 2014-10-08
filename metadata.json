@@ -1,6 +1,6 @@
 {
   "name": "JohannDickson-prosody",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "author": "Johann Dickson",
   "license": "MIT License",
   "summary": "Install and manage the Prosody XMPP/Jabber server",
