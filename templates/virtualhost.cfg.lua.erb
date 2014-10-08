@@ -1,0 +1,75 @@
+-- Section for <%= @name %>
+
+VirtualHost "<%= @name %>"
+
+-- Assign this host a certificate for TLS, otherwise it would use the one
+-- set in the global section (if any).
+-- Note that old-style SSL on port 5223 only supports one certificate, and will always
+-- use the global one.
+<%- if @ssl_key != '' and @ssl_cert != '' %>
+ssl = {
+    key = "/etc/prosody/certs/<%= @ssl_key %>.key";
+    certificate = "/etc/prosody/certs/<%= @ssl_cert %>.crt";
+}
+<%- end -%>
+
+admins = {
+<% @admins.each_with_index do |@admin, i| -%>
+    "<%= @admin %>"<%= ',' if i < (@admins.size - 1) %>
+<%- end -%>
+}
+
+-- Select the authentication backend to use. The 'internal' providers
+-- use Prosody's configured data storage to store the authentication data.
+-- To allow Prosody to offer secure authentication mechanisms to clients, the
+-- default provider stores passwords in plaintext. If you do not trust your
+-- server please see http://prosody.im/doc/modules/mod_auth_internal_hashed
+-- for information about using the hashed backend.
+authentication = "<%= @authentication %>"
+
+-- Only allow encrypted streams? Encryption is already used when
+-- available. These options will cause Prosody to deny connections that
+-- are not encrypted. Note that some servers do not support s2s
+-- encryption or have it disabled, including gmail.com and Google Apps
+-- domains.
+c2s_require_encryption = <%= @c2s_require_encryption %>
+s2s_require_encryption = <%= @s2s_require_encryption %>
+
+allow_registration = <%= @allow_registration %>
+anonymous_login = false
+
+modules_enabled = {
+<% @modules_enabled.each do |@mod| -%>
+    "<%= @mod %>";
+<%- end -%>
+}
+
+default_storage = "<%= @storage %>"
+
+<% if @modules_enabled.include? "groups" %>
+groups_file = "<%= @groups_file %>"
+<% end -%>
+
+<% if @modules_enabled.include? "watchregistrations" %>
+registration_watchers = {
+<% @registration_watchers.each_with_index do |@registration_watcher, i| -%>
+    "<%= @registration_watcher %>"<%= ',' if i < (@registration_watchers.size - 1) %>
+<%- end -%>
+}
+registration_notification = "User $username has registered on $host from $ip"
+<% end -%>
+
+------ Components ------
+-- You can specify components to add hosts that provide special services,
+-- like multi-user conferences, and transports.
+-- For more information on components, see http://prosody.im/doc/components
+
+-- Set up a MUC (multi-user chat) room server on conference.<%= @name %>:
+--Component "conference.<%= @name %>" "muc"
+
+-- Set up a SOCKS5 bytestream proxy for server-proxied file transfers:
+--Component "proxy.<%= @name %>" "proxy65"
+
+---Set up an external component (default component port is 5347)
+--Component "gateway.<%= @name %>"
+--	component_secret = "password"
