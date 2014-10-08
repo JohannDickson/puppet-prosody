@@ -1,7 +1,7 @@
 define prosody::virtualhost(
   $admins                 = [],
   $allow_registration     = false,
-  $registration_watchers  = [],
+  $registration_watchers  = $admins,
   $modules_enabled        = [],
   $storage                = $::prosody::storage,
   $authentication         = $::prosody::authentication,
