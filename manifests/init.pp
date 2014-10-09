@@ -8,6 +8,7 @@ class prosody(
   $allow_registration     = false,
   $c2s_require_encryption = false,
   $s2s_require_encryption = false,
+  $storage                = 'internal',
 ){
 
   class {
