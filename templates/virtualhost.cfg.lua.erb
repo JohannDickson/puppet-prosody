@@ -8,8 +8,8 @@ VirtualHost "<%= @name %>"
 -- use the global one.
 <%- if @ssl_key != '' and @ssl_cert != '' %>
 ssl = {
-    key = "/etc/prosody/certs/<%= @ssl_key %>.key";
-    certificate = "/etc/prosody/certs/<%= @ssl_cert %>.crt";
+    key = "<%= @ssl_key %>";
+    certificate = "<%= @ssl_cert %>";
 }
 <%- end -%>
 
