@@ -19,7 +19,8 @@ class prosody::package {
 
   exec {
     'apt-key':
-      command  => 'wget https://prosody.im/files/prosody-debian-packages.key -O-\
+      command  => 'wget https://prosody.im/files/prosody-debian-packages.key \
+        -qO - \
         | apt-key --keyring /etc/apt/trusted.gpg.d/prosody.gpg add -',
       creates  => '/etc/apt/trusted.gpg.d/prosody.gpg',
       provider => 'shell',
