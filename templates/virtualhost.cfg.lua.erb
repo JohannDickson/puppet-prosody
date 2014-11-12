@@ -14,8 +14,8 @@ ssl = {
 <%- end -%>
 
 admins = {
-<% @admins.each_with_index do |@admin, i| -%>
-    "<%= @admin %>"<%= ',' if i < (@admins.size - 1) %>
+<% @admins.each_with_index do |admin, i| -%>
+    "<%= admin %>"<%= ',' if i < (@admins.size - 1) %>
 <%- end -%>
 }
 
@@ -39,8 +39,8 @@ allow_registration = <%= @allow_registration %>
 anonymous_login = false
 
 modules_enabled = {
-<% @modules_enabled.each do |@mod| -%>
-    "<%= @mod %>";
+<% @modules_enabled.each do |mod| -%>
+    "<%= mod %>";
 <%- end -%>
 }
 
@@ -52,8 +52,8 @@ groups_file = "<%= @groups_file %>"
 
 <% if @modules_enabled.include? "watchregistrations" %>
 registration_watchers = {
-<% @registration_watchers.each_with_index do |@registration_watcher, i| -%>
-    "<%= @registration_watcher %>"<%= ',' if i < (@registration_watchers.size - 1) %>
+<% @registration_watchers.each_with_index do |registration_watcher, i| -%>
+    "<%= registration_watcher %>"<%= ',' if i < (@registration_watchers.size - 1) %>
 <%- end -%>
 }
 registration_notification = "User $username has registered on $host from $ip"

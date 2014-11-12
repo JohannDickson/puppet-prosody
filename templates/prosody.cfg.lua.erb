@@ -21,8 +21,8 @@
 -- (see http://prosody.im/doc/creating_accounts for info)
 -- Example: admins = { "user1@example.com", "user2@example.net" }
 admins = {
-<% @admins.each_with_index do |@admin, i| -%>
-	"<%= @admin %>"<%= ',' if i < (@admins.size - 1) %>
+<% @admins.each_with_index do |admin, i| -%>
+	"<%= admin %>"<%= ',' if i < (@admins.size - 1) %>
 <%- end -%>
 }
 
@@ -75,8 +75,8 @@ modules_enabled = {
 		"posix"; -- POSIX functionality, sends server to background, enables syslog, etc.
 	<%- end -%>
 
-<%- @modules_enabled.each do |@mod| -%><%- if @mod != "defaults" -%>
-    "<%= @mod %>";
+<%- @modules_enabled.each do |mod| -%><%- if mod != "defaults" -%>
+    "<%= mod %>";
 <%- end -%><%- end -%>
 };
 
@@ -88,8 +88,8 @@ modules_disabled = {
 	-- "message"; -- Route messages
 	-- "iq"; -- Route info queries
 	-- "offline"; -- Store offline messages
-<% @modules_disabled.each do |@mod| -%>
-    "<%= @mod %>";
+<% @modules_disabled.each do |mod| -%>
+    "<%= mod %>";
 <%- end -%>
 };
 
